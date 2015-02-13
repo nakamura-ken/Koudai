@@ -3,29 +3,40 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	//HP
 	public float HP = 3f;
 	float nowHP;
 
+	//無敵時間
 	public float invincibleTime = 1f;
 	bool invincible = false;
 
-	public float maxSpeed = 2f;
+	//移動速度
+	public float Speed = 2f;
 	bool facingRight = true;
 
+	//ジャンプ
+	bool doubleJumpNG = false;
 	bool doubleJump = false;
-	bool jump = false;
+	bool jumping = false;
+	bool jumpEnd = false;
 	bool grounded = false;
 	Transform groundCheck;
-	float groundRadius = 0.2f;
+	float groundRadius = 0.1f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 700f;
-	float jumpTime = 0.01f;
+	public float jumpTime = 0.01f;
+	float time = 0f;
 
+	//プレイヤーの色
 	public Color[] color;
 	public float alpha = 0.3f;
 
-	public float ShootTime = 0.1f;
+	//ショット
+	//public float ShootTime = 0.1f;
 	bool shoot = false;
+	[HideInInspector]
+	public float shootCount = 3f;
 	Transform shootParent;
 	GameObject bullet;
 
@@ -41,28 +52,31 @@ public class PlayerController : MonoBehaviour {
 	void Update(){
 		PlayerMove();
 		Shoot();
-		if(Input.GetKeyDown(KeyCode.Space))
-			Jump2();
+
+		Jump3();
 	}
 
 
 	void PlayerMove(){
+		//接地判定
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
 		float move = Input.GetAxisRaw("Horizontal");
 		
 		if(grounded || (!grounded && move != 0))
-			gameObject.rigidbody2D.velocity = new Vector2(move * maxSpeed*10f, gameObject.rigidbody2D.velocity.y);
-		
+			gameObject.rigidbody2D.velocity = new Vector2(move * Speed*10f, gameObject.rigidbody2D.velocity.y);
+
+		//顔の向きを反転
 		if(move > 0 && !facingRight)
 			Flip();
 		else if(move < 0 && facingRight)
 			Flip();
 	}
 
+	/*
 	IEnumerator Jump(){
 		if(grounded){
-			if(Input.GetKey(KeyCode.Space) && jump){
+			if(Input.GetKey(KeyCode.Space) && jumping){
 				float time = 0f;
 				while(time < jumpTime){
 					time += Time.deltaTime;
@@ -72,11 +86,11 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			doubleJump = true;
-			if(grounded && jump)
-				jump = false;
+			if(grounded && jumping)
+				jumping = false;
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
-			jump = true;
+			jumping = true;
 		}
 		if(!grounded && doubleJump){
 			if(Input.GetKey(KeyCode.Space)){
@@ -91,24 +105,45 @@ public class PlayerController : MonoBehaviour {
 			doubleJump = false;
 		}
 	}
+	*/
+	void Jump3(){
+		//接地判定
+		if(grounded){
+			doubleJump = false;
+			doubleJumpNG =false;
+		}
 
-	void Jump2(){
-		//Space Key down
-			//Ground
+		//スペースDown
+		if(Input.GetKeyDown(KeyCode.Space)){
 			if(grounded){
-				//Space Key 
-				float time = 0f;
-				if(Input.GetKey(KeyCode.Space)){
-					time += Time.deltaTime;
-					Debug.Log("a_jump");
-					gameObject.rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-					//yield return null;
-
+				jumping = true;
+			}else{
+				if(!doubleJumpNG){
+					doubleJump = true;
+					doubleJumpNG = true;
 				}
-			} 
+			}
+			time = 0f;
+		}
+		//スペースUp
+		if(Input.GetKeyUp(KeyCode.Space)){
+			doubleJump = false;
+			jumping = false;
+			jumpEnd = false;
+		}
+		//ジャンプ
+		if((jumping || doubleJump) && !jumpEnd){
+			//Debug.Log("jump");
+			time += Time.deltaTime;
+			if(time > jumpTime){
+				jumpEnd = true;
+				//Debug.Log("End");
+			}
+			gameObject.rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+		}
 	}
 
-
+	//顔の向き
 	void Flip(){
 		facingRight = !facingRight;
 		Vector3 scale = gameObject.transform.localScale;
@@ -116,27 +151,16 @@ public class PlayerController : MonoBehaviour {
 		gameObject.transform.localScale = scale;
 	}
 
+	//攻撃
 	void Shoot(){
 		if(Input.GetKeyDown(KeyCode.S)){
-			Debug.Log("s");
-			if(!shoot){
-				shoot = true;
-				GameObject _bullet = (GameObject)Instantiate(bullet);
-				_bullet.transform.parent = shootParent.transform;
-				float time = 0f;
-				/*
-				while(time <= ShootTime){
-					Debug.Log("shoot");
-					time += Time.deltaTime;
-					yield return null;
-				}
-				*/
-				shoot = false;
-				Debug.Log("shoot_E");
-			}
+			//インスタンス作成
+			GameObject _bullet = (GameObject)Instantiate(bullet, shootParent.position, shootParent.rotation);
+			_bullet.transform.parent = shootParent.transform;
 		}
 	}
 
+	//被ダメージ
 	public void Damage(){
 		if(invincible) return;
 		nowHP--;
@@ -147,6 +171,7 @@ public class PlayerController : MonoBehaviour {
 		StartCoroutine(Invincible());
 	}
 
+	//無敵判定
 	IEnumerator Invincible(){
 		Debug.Log("inv");
 		invincible = true;

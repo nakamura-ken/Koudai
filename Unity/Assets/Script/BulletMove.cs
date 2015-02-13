@@ -7,14 +7,22 @@ public class BulletMove: MonoBehaviour {
 
 	public float speed = 0.5f;
 
-	void Start () {
+	PlayerController script;
 
+	void Start () {
+		script = GameObject.Find("Player").GetComponent<PlayerController>();
 	}
 
 	void Update () {
 		gameObject.transform.localPosition += new Vector3(speed, 0f, 0f);
 
-		if(lifeDistance <= gameObject.transform.localPosition.x)
-			Destroy(gameObject);
+		//if(lifeDistance <= gameObject.transform.localPosition.x)
+			//Destroy(gameObject);
+	}
+
+	void OnBecameInvisible(){
+		Debug.Log("cam");
+		script.shootCount ++;
+		Destroy(gameObject);
 	}
 }
