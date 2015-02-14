@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	//HP
-	public float HP = 3f;
+	public float HitPoint = 3f;
 	float nowHP;
 
 	//無敵時間
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 		bullet = (GameObject)Resources.Load("Prefab/bullet");
 		gameObject.renderer.material.color = color[0];
 
-		nowHP = HP;
+		nowHP = HitPoint;
 	}
 
 	void Update(){
@@ -164,9 +164,9 @@ public class PlayerController : MonoBehaviour {
 	public void Damage(){
 		if(invincible) return;
 		nowHP--;
-		if(nowHP <= (HP/3)*2)
+		if(nowHP <= (HitPoint/3)*2)
 			gameObject.renderer.material.color = color[1];
-		if(nowHP <= HP/3)
+		if(nowHP <= HitPoint/3)
 			gameObject.renderer.material.color = color[2];
 		StartCoroutine(Invincible());
 	}

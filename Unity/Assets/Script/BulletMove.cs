@@ -7,10 +7,10 @@ public class BulletMove: MonoBehaviour {
 
 	public float speed = 0.5f;
 
-	PlayerController script;
+	PlayerController p_script;
 
 	void Start () {
-		script = GameObject.Find("Player").GetComponent<PlayerController>();
+		p_script = GameObject.Find("Player").GetComponent<PlayerController>();
 	}
 
 	void Update () {
@@ -22,7 +22,15 @@ public class BulletMove: MonoBehaviour {
 
 	void OnBecameInvisible(){
 		Debug.Log("cam");
-		script.shootCount ++;
+		p_script.shootCount ++;
+		Destroy(gameObject);
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if(other.tag == "Enemy"){
+			EnemyController e_script = other.GetComponent<EnemyController>();
+			e_script.Damage();
+		}
 		Destroy(gameObject);
 	}
 }
