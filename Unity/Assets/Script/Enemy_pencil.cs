@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class _EnemyMove : MonoBehaviour {
+public class Enemy_pencil: MonoBehaviour {
 
-	public float HP = 3f;
+	public float HitPoint = 3f;
 	float nowHP;
 
 	//public float invincibleTime = 1f;
@@ -18,7 +18,7 @@ public class _EnemyMove : MonoBehaviour {
 	public LayerMask whatIsGround;
 	//public float jumpForce = 700f;
 	float jumpTime = 0.01f;
-	
+
 	public float alpha = 0.3f;
 
 	public float ShootTime = 0.1f;
@@ -38,7 +38,7 @@ public class _EnemyMove : MonoBehaviour {
 		shootParent = transform.FindChild("ShootingPosition");
 		bullet = (GameObject)Resources.Load("Prefab/bullet");
 
-		nowHP = HP;
+		nowHP = HitPoint;
 		//
 
 	}
@@ -73,7 +73,7 @@ public class _EnemyMove : MonoBehaviour {
 
 
 		//if(grounded || (!grounded && move != 0))
-			gameObject.rigidbody2D.velocity = new Vector2(move * maxSpeed*10f, gameObject.rigidbody2D.velocity.y);
+		gameObject.rigidbody2D.velocity = new Vector2(move * maxSpeed*10f, gameObject.rigidbody2D.velocity.y);
 
 		if(move < 0 && !facingRight)
 			Flip();
@@ -111,13 +111,20 @@ public class _EnemyMove : MonoBehaviour {
 	}
 
 
+	public void Damage(){
+		HitPoint --;
+
+		if(HitPoint <= 0f){
+			Destroy(gameObject);
+		}
+	}
+
 
 
 }
+
+
+
+
+
 	
-
-		
-
-
-
-

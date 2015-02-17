@@ -30,7 +30,19 @@ public class BulletMove: MonoBehaviour {
 		if(other.tag == "Enemy"){
 			EnemyController e_script = other.GetComponent<EnemyController>();
 			e_script.Damage();
+
 		}
+
+		if (other.tag == "Enemy_") {
+			Enemy_piano e_script_piano = other.GetComponent<Enemy_piano> ();
+			e_script_piano.Damage ();
+		}
+
+		if (other.tag == "Enemy__") {
+			Enemy_pencil e_script_pencil = other.GetComponent<Enemy_pencil> ();
+			e_script_pencil.Damage ();
+		}
+
 		Destroy(gameObject);
 	}
 }
