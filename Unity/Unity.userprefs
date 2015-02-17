@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\EnemyController.cs">
+    <Files>
+      <File FileName="Assets\Script\PlayerController.cs" Line="70" Column="31" />
+      <File FileName="Assets\Script\BulletMove.cs" Line="29" Column="42" />
+      <File FileName="Assets\Script\EnemyController.cs" Line="24" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
