@@ -51,6 +51,7 @@ public class Enemy_piano: MonoBehaviour {
 
 	}
 	public float bulletspan = 10f;
+
 	void Update () {
 
 
