@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		groundCheck = transform.FindChild("groundCheck");
 		shootParent = transform.FindChild("ShootingPosition");
-		bullet = (GameObject)Resources.Load("Prefab/bullet");
+		bullet = (GameObject)Resources.Load("Prefab/Player/bullet");
 		gameObject.renderer.material.color = color[0];
 
 		nowHP = HitPoint;
