@@ -3,17 +3,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	Animator anim;
+
 	//HP
 	public float HitPoint = 3f;
 	float nowHP;
 
 	//無敵時間
 	public float invincibleTime = 1f;
+	public float Damage_x = 10f;
+	public float Damage_y = 10f;
 	bool invincible = false;
+	bool damage = false;
 
 	//移動速度
 	public float Speed = 2f;
 	bool facingRight = true;
+	float move;
 
 	//ジャンプ
 	bool doubleJumpNG = false;
@@ -33,14 +39,16 @@ public class PlayerController : MonoBehaviour {
 	public float alpha = 0.3f;
 
 	//ショット
-	//public float ShootTime = 0.1f;
-	bool shoot = false;
+	//public float ShootTime = 1f;
+	//bool shoot = false;
 	[HideInInspector]
 	public float shootCount = 3f;
 	Transform shootParent;
 	GameObject bullet;
 
 	void Start () {
+		anim = gameObject.GetComponent<Animator>();
+
 		groundCheck = transform.FindChild("groundCheck");
 		shootParent = transform.FindChild("ShootingPosition");
 		bullet = (GameObject)Resources.Load("Prefab/Player/bullet");
@@ -50,19 +58,28 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
+		//接地判定
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		anim.SetBool("Grounded", grounded);
+
+		if(damage){
+			if(anim.GetBool("Damage")){
+				return;
+			}else{
+				damage = false;
+			}
+		}
 		PlayerMove();
 		Shoot();
-
-		Jump3();
+		Jump();
 	}
 
 
 	void PlayerMove(){
-		//接地判定
-		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		move = Input.GetAxisRaw("Horizontal");
 
-		float move = Input.GetAxisRaw("Horizontal");
-		
+		anim.SetFloat("Speed", Mathf.Abs(move));
+
 		if(grounded || (!grounded && move != 0))
 			gameObject.rigidbody2D.velocity = new Vector2(move * Speed*10f, gameObject.rigidbody2D.velocity.y);
 
@@ -73,40 +90,7 @@ public class PlayerController : MonoBehaviour {
 			Flip();
 	}
 
-	/*
-	IEnumerator Jump(){
-		if(grounded){
-			if(Input.GetKey(KeyCode.Space) && jumping){
-				float time = 0f;
-				while(time < jumpTime){
-					time += Time.deltaTime;
-					Debug.Log("a_jump");
-					gameObject.rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-					yield return null;
-				}
-			}
-			doubleJump = true;
-			if(grounded && jumping)
-				jumping = false;
-		}
-		if(Input.GetKeyDown(KeyCode.Space)){
-			jumping = true;
-		}
-		if(!grounded && doubleJump){
-			if(Input.GetKey(KeyCode.Space)){
-				float time = 0f;
-				while(time < jumpTime){
-					time += Time.deltaTime;
-					Debug.Log("a_jump");
-					gameObject.rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-					yield return null;
-				}
-			}
-			doubleJump = false;
-		}
-	}
-	*/
-	void Jump3(){
+	void Jump(){
 		//接地判定
 		if(grounded){
 			doubleJump = false;
@@ -163,7 +147,9 @@ public class PlayerController : MonoBehaviour {
 	//被ダメージ
 	public void Damage(){
 		if(invincible) return;
+		damage = true;
 		nowHP--;
+		gameObject.rigidbody2D.AddForce(new Vector2(move * Damage_x, Damage_y));
 		if(nowHP <= (HitPoint/3)*2)
 			gameObject.renderer.material.color = color[1];
 		if(nowHP <= HitPoint/3)
@@ -175,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator Invincible(){
 		Debug.Log("inv");
 		invincible = true;
+		anim.SetBool("Damage", true);
 		Color col = gameObject.renderer.material.color;
 		col.a -= alpha;
 		gameObject.renderer.material.color = col;
@@ -183,6 +170,7 @@ public class PlayerController : MonoBehaviour {
 			time += Time.deltaTime;
 			yield return null;
 		}
+		anim.SetBool("Damage", false);
 		invincible = false;
 		col = gameObject.renderer.material.color;
 		col.a += alpha;

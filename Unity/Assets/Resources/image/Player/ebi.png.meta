@@ -1,0 +1,234 @@
+fileFormatVersion: 2
+guid: fc066e769c34d294f89e92a7c0444be9
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ebi_idle1
+    21300002: ebi_idle2
+    21300004: ebi_idleShoot
+    21300006: ebi_run1
+    21300008: ebi_run2
+    21300010: ebi_run3
+    21300012: ebi_runShoot1
+    21300014: ebi_runShoot2
+    21300016: ebi_runShoot3
+    21300018: ebi_damage
+    21300020: ebi_jump
+    21300022: ebi_jumpShoot
+    21300024: ebi_ladder1
+    21300026: ebi_ladder2
+    21300028: ebi_ladderShoot
+    21300030: ebi_ladderEnd
+    21300032: ebi_slide
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 30
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ebi_idle1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_idle2
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_idleShoot
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 39
+        width: 29
+        height: 31
+      alignment: 9
+      pivot: {x: .400000006, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_run1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 39
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_run2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_run3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_runShoot1
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_runShoot2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_runShoot3
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 39
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_damage
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_jump
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_jumpShoot
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_ladder1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_ladder2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_ladderShoot
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_ladderEnd
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 7
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ebi_slide
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 7
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
