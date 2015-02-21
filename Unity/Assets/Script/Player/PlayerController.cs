@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 		//接地判定
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool("Grounded", grounded);
-
+		
 		if(damage){
 			if(anim.GetBool("Damage")){
 				return;
@@ -69,11 +69,14 @@ public class PlayerController : MonoBehaviour {
 				damage = false;
 			}
 		}
+
 		PlayerMove();
 		Shoot();
 		Jump();
-	}
 
+		if(Input.GetKeyDown(KeyCode.A))
+			gameObject.rigidbody2D.velocity = Vector2.zero;
+	}
 
 	void PlayerMove(){
 		move = Input.GetAxisRaw("Horizontal");
@@ -149,7 +152,40 @@ public class PlayerController : MonoBehaviour {
 		if(invincible) return;
 		damage = true;
 		nowHP--;
-		gameObject.rigidbody2D.AddForce(new Vector2(move * Damage_x, Damage_y));
+		//float velo = gameObject.rigidbody2D.velocity.x;
+		//gameObject.rigidbody2D.velocity = Vector2.zero;
+
+		/*
+		if(velo <= 0f)
+			gameObject.rigidbody2D.AddForce(new Vector2(1f * Damage_x, Damage_y));
+		else
+			gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
+		*/
+		gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
+
+		if(nowHP <= (HitPoint/3)*2)
+			gameObject.renderer.material.color = color[1];
+		if(nowHP <= HitPoint/3)
+			gameObject.renderer.material.color = color[2];
+		StartCoroutine(Invincible());
+	}
+
+	public void Damage2(Vector2 velo){
+		if(invincible) return;
+		damage = true;
+		nowHP--;
+		//float velo = gameObject.rigidbody2D.velocity.x;
+		//gameObject.rigidbody2D.velocity = Vector2.zero;
+		
+		/*
+		if(velo <= 0f)
+			gameObject.rigidbody2D.AddForce(new Vector2(1f * Damage_x, Damage_y));
+		else
+			gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
+		*/
+		Debug.Log(velo);
+		gameObject.rigidbody2D.AddForce(new Vector2(Damage_x * velo.x, Damage_y * velo.y));
+		
 		if(nowHP <= (HitPoint/3)*2)
 			gameObject.renderer.material.color = color[1];
 		if(nowHP <= HitPoint/3)
@@ -176,4 +212,5 @@ public class PlayerController : MonoBehaviour {
 		col.a += alpha;
 		gameObject.renderer.material.color = col;
 	}
+
 }
