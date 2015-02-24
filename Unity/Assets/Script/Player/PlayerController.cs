@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour {
 			gameObject.rigidbody2D.velocity = Vector2.zero;
 	}
 
+	#region Player移動
 	void PlayerMove(){
 		move = Input.GetAxisRaw("Horizontal");
 
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour {
 		scale.x *= -1;
 		gameObject.transform.localScale = scale;
 	}
+	#endregion
 
 	//攻撃
 	void Shoot(){
@@ -147,21 +149,12 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	#region Playerダメージ
 	//被ダメージ
 	public void Damage(){
 		if(invincible) return;
 		damage = true;
 		nowHP--;
-		//float velo = gameObject.rigidbody2D.velocity.x;
-		//gameObject.rigidbody2D.velocity = Vector2.zero;
-
-		/*
-		if(velo <= 0f)
-			gameObject.rigidbody2D.AddForce(new Vector2(1f * Damage_x, Damage_y));
-		else
-			gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
-		*/
-		gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
 
 		if(nowHP <= (HitPoint/3)*2)
 			gameObject.renderer.material.color = color[1];
@@ -212,5 +205,6 @@ public class PlayerController : MonoBehaviour {
 		col.a += alpha;
 		gameObject.renderer.material.color = col;
 	}
+	#endregion
 
 }

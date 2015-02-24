@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 924b1e6b4b6ac7841a8fddaeb5dceceb
+guid: 7e90463219fe3e04f924a92f582793c8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ebi_off1_idle1
-    21300002: ebi_off1_idle2
-    21300004: ebi_off1_idleShoot
-    21300006: ebi_off1_run1
-    21300008: ebi_off1_run2
-    21300010: ebi_off1_run3
-    21300012: ebi_off1_runShoot1
-    21300014: ebi_off1_runShoot2
-    21300016: ebi_off1_runShoot3
-    21300018: ebi_off1_damage
-    21300020: ebi_off1_jump
-    21300022: ebi_off1_jumpShoot
-    21300024: ebi_off1_ladder2
-    21300026: ebi_off1_ladder2
-    21300028: ebi_off1_ladderShoot
-    21300030: ebi_off1_ladderEnd
-    21300032: ebi_off1_slide
+    21300000: ebi_off2_idle1
+    21300002: ebi_off2_idle2
+    21300004: ebi_off2_idleShoot
+    21300006: ebi_off2_run1
+    21300008: ebi_off2_run2
+    21300010: ebi_off2_run3
+    21300012: ebi_off2_runShoot1
+    21300014: ebi_off2_runuShoot2
+    21300016: ebi_off2_runShoot3
+    21300018: ebi_off2_damage
+    21300020: ebi_off2_jump
+    21300022: ebi_off2_jumpShoot
+    21300024: ebi_off2_ladder1
+    21300026: ebi_off2_ladder2
+    21300028: ebi_off2_ladderShoot
+    21300030: ebi_off2_ladderEnd
+    21300032: ebi_off2_slide
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -60,7 +60,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ebi_off1_idle1
+    - name: ebi_off2_idle1
       rect:
         serializedVersion: 2
         x: 0
@@ -70,7 +70,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_idle2
+    - name: ebi_off2_idle2
       rect:
         serializedVersion: 2
         x: 29
@@ -80,7 +80,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_idleShoot
+    - name: ebi_off2_idleShoot
       rect:
         serializedVersion: 2
         x: 58
@@ -88,9 +88,9 @@ TextureImporter:
         width: 29
         height: 31
       alignment: 9
-      pivot: {x: .409683228, y: .5}
+      pivot: {x: .436017007, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_run1
+    - name: ebi_off2_run1
       rect:
         serializedVersion: 2
         x: 88
@@ -100,7 +100,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_run2
+    - name: ebi_off2_run2
       rect:
         serializedVersion: 2
         x: 116
@@ -110,7 +110,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_run3
+    - name: ebi_off2_run3
       rect:
         serializedVersion: 2
         x: 145
@@ -120,7 +120,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_runShoot1
+    - name: ebi_off2_runShoot1
       rect:
         serializedVersion: 2
         x: 174
@@ -130,7 +130,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_runShoot2
+    - name: ebi_off2_runuShoot2
       rect:
         serializedVersion: 2
         x: 203
@@ -140,7 +140,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_runShoot3
+    - name: ebi_off2_runShoot3
       rect:
         serializedVersion: 2
         x: 233
@@ -150,7 +150,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_damage
+    - name: ebi_off2_damage
       rect:
         serializedVersion: 2
         x: 0
@@ -160,7 +160,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_jump
+    - name: ebi_off2_jump
       rect:
         serializedVersion: 2
         x: 30
@@ -170,7 +170,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_jumpShoot
+    - name: ebi_off2_jumpShoot
       rect:
         serializedVersion: 2
         x: 59
@@ -180,7 +180,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_ladder2
+    - name: ebi_off2_ladder1
       rect:
         serializedVersion: 2
         x: 88
@@ -190,7 +190,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_ladder2
+    - name: ebi_off2_ladder2
       rect:
         serializedVersion: 2
         x: 117
@@ -200,7 +200,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_ladderShoot
+    - name: ebi_off2_ladderShoot
       rect:
         serializedVersion: 2
         x: 146
@@ -210,7 +210,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_ladderEnd
+    - name: ebi_off2_ladderEnd
       rect:
         serializedVersion: 2
         x: 175
@@ -220,10 +220,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ebi_off1_slide
+    - name: ebi_off2_slide
       rect:
         serializedVersion: 2
-        x: 204
+        x: 203
         y: 7
         width: 28
         height: 31
