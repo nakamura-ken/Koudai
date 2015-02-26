@@ -9,17 +9,20 @@ public class PlayerController : MonoBehaviour {
 	public float HitPoint = 3f;
 	float nowHP;
 
-	//無敵時間
+	//ダメージ
 	public float invincibleTime = 1f;
-	public float Damage_x = 10f;
-	public float Damage_y = 10f;
 	bool invincible = false;
+	public float DamageDistance = 10f;
+	public float DamageSpeed = 2f;
 	bool damage = false;
+
+	//プレイヤーの色
+	public Color[] color;
+	public float DamageAlpha = 0.3f;
 
 	//移動速度
 	public float Speed = 2f;
 	bool facingRight = true;
-	float move;
 
 	//ジャンプ
 	bool doubleJumpNG = false;
@@ -34,13 +37,8 @@ public class PlayerController : MonoBehaviour {
 	public float jumpTime = 0.01f;
 	float time = 0f;
 
-	//プレイヤーの色
-	public Color[] color;
-	public float alpha = 0.3f;
-
 	//ショット
-	//public float ShootTime = 1f;
-	//bool shoot = false;
+	public float ShootAnimTime = 0.5f;
 	[HideInInspector]
 	public float shootCount = 3f;
 	Transform shootParent;
@@ -61,26 +59,20 @@ public class PlayerController : MonoBehaviour {
 		//接地判定
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool("Grounded", grounded);
-		
-		if(damage){
-			if(anim.GetBool("Damage")){
-				return;
-			}else{
-				damage = false;
-			}
-		}
+
+		if(damage)
+			return;
 
 		PlayerMove();
-		Shoot();
 		Jump();
 
-		if(Input.GetKeyDown(KeyCode.A))
-			gameObject.rigidbody2D.velocity = Vector2.zero;
+		if(Input.GetKeyDown(KeyCode.S))
+			StartCoroutine(Shoot());
 	}
 
 	#region Player移動
 	void PlayerMove(){
-		move = Input.GetAxisRaw("Horizontal");
+		float move = Input.GetAxisRaw("Horizontal");
 
 		anim.SetFloat("Speed", Mathf.Abs(move));
 
@@ -141,18 +133,27 @@ public class PlayerController : MonoBehaviour {
 	#endregion
 
 	//攻撃
-	void Shoot(){
-		if(Input.GetKeyDown(KeyCode.S)){
-			//インスタンス作成
-			GameObject _bullet = (GameObject)Instantiate(bullet, shootParent.position, shootParent.rotation);
-			_bullet.transform.parent = shootParent.transform;
+	IEnumerator Shoot(){
+		if(!anim.GetBool("Shoot"))
+			anim.SetBool("Shoot", true);
+
+		//インスタンス作成
+		GameObject _bullet = (GameObject)Instantiate(bullet, shootParent.position, shootParent.rotation);
+		_bullet.transform.parent = shootParent.transform;
+		float time = 0f;
+		while(time < ShootAnimTime){
+			time += Time.deltaTime;
+			yield return null;
 		}
+		anim.SetBool("Shoot", false);
 	}
 
 	#region Playerダメージ
 	//被ダメージ
 	public void Damage(){
-		if(invincible) return;
+		if(invincible)
+			return;
+
 		damage = true;
 		nowHP--;
 
@@ -161,48 +162,43 @@ public class PlayerController : MonoBehaviour {
 		if(nowHP <= HitPoint/3)
 			gameObject.renderer.material.color = color[2];
 		StartCoroutine(Invincible());
+		StartCoroutine(DamageBack());
 	}
 
-	public void Damage2(Vector2 velo){
-		if(invincible) return;
-		damage = true;
-		nowHP--;
-		//float velo = gameObject.rigidbody2D.velocity.x;
-		//gameObject.rigidbody2D.velocity = Vector2.zero;
-		
-		/*
-		if(velo <= 0f)
-			gameObject.rigidbody2D.AddForce(new Vector2(1f * Damage_x, Damage_y));
+	//のけぞり
+	IEnumerator DamageBack(){
+		anim.SetBool("Damage", true);
+		float time = 0f;
+		Vector3 pos = gameObject.transform.position;
+		float right = 0f;
+		if(facingRight)
+			right = -1f;
 		else
-			gameObject.rigidbody2D.AddForce(new Vector2((-1f) * Damage_x, Damage_y));
-		*/
-		Debug.Log(velo);
-		gameObject.rigidbody2D.AddForce(new Vector2(Damage_x * velo.x, Damage_y * velo.y));
-		
-		if(nowHP <= (HitPoint/3)*2)
-			gameObject.renderer.material.color = color[1];
-		if(nowHP <= HitPoint/3)
-			gameObject.renderer.material.color = color[2];
-		StartCoroutine(Invincible());
+			right = 1f;
+		while(Vector3.Distance(gameObject.transform.position, pos) <= DamageDistance){
+			time += Time.deltaTime;
+			gameObject.rigidbody2D.velocity = new Vector2(right * DamageSpeed * 10f, gameObject.rigidbody2D.velocity.y);
+			yield return null;
+		}
+		anim.SetBool("Damage", false);
+		damage = false;
 	}
 
 	//無敵判定
 	IEnumerator Invincible(){
 		Debug.Log("inv");
 		invincible = true;
-		anim.SetBool("Damage", true);
 		Color col = gameObject.renderer.material.color;
-		col.a -= alpha;
+		col.a -= DamageAlpha;
 		gameObject.renderer.material.color = col;
 		float time = 0f;
 		while(time < invincibleTime){
 			time += Time.deltaTime;
 			yield return null;
 		}
-		anim.SetBool("Damage", false);
 		invincible = false;
 		col = gameObject.renderer.material.color;
-		col.a += alpha;
+		col.a += DamageAlpha;
 		gameObject.renderer.material.color = col;
 	}
 	#endregion

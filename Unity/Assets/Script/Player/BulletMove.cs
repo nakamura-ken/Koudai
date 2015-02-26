@@ -30,7 +30,6 @@ public class BulletMove: MonoBehaviour {
 		if(other.tag == "Enemy"){
 			EnemyController e_script = other.GetComponent<EnemyController>();
 			e_script.Damage();
-
 		}
 
 		if (other.tag == "Enemy_") {
