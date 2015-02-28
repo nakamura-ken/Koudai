@@ -22,8 +22,6 @@ public class MoveBlock : MonoBehaviour {
 	Vector3 pos;
 	float rMove = 1f;
 
-	List<GameObject> ride = new List<GameObject>();
-
 	void Start () {
 		pos = gameObject.transform.position;
 		if(MoveReturn)
@@ -48,10 +46,6 @@ public class MoveBlock : MonoBehaviour {
 		float posY = pos.y + Move_y * Mathf.Sin(Time.time * Speed * rMove);
 		
 		gameObject.transform.position = new Vector3(posX, posY, gameObject.transform.position.z);
-		foreach (GameObject g in ride) {
-			Vector3 v = g.transform.position;
-			//g.transform.position = new Vector3(v.x + posX, v.y + posY, v.z);
-		}
 	}
 
 	//回転
@@ -60,13 +54,27 @@ public class MoveBlock : MonoBehaviour {
 	}
 	#endregion
 
+	//線移動用Trigger
 	void OnTriggerEnter2D(Collider2D other) {
-		//床の上に乗ったオブジェクトを保存
-		ride.Add(other.gameObject);
+		switch(moveType){
+		case MoveType.Line:
+			if(other.transform.parent == null &&other.tag == "Player")
+				other.transform.parent = gameObject.transform;
+			break;
+		case MoveType.Rotate:
+			break;
+		}
 	}
 	
 	void OnTriggerExit2D(Collider2D other) {
-		//床から離れたので削除
-		ride.Remove(other.gameObject);
+		switch(moveType){
+		case MoveType.Line:
+			if(other.transform.parent != null && other.tag == "Player")
+				other.transform.parent = null;
+			break;
+		case MoveType.Rotate:
+			break;
+		}
+
 	}
 }
