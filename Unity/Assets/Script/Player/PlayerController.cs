@@ -140,11 +140,7 @@ public class PlayerController : MonoBehaviour {
 		//インスタンス作成
 		GameObject _bullet = (GameObject)Instantiate(bullet, shootParent.position, shootParent.rotation);
 		_bullet.transform.parent = shootParent.transform;
-		float time = 0f;
-		while(time < ShootAnimTime){
-			time += Time.deltaTime;
-			yield return null;
-		}
+		yield return new WaitForSeconds(ShootAnimTime);
 		anim.SetBool("Shoot", false);
 	}
 
@@ -191,11 +187,7 @@ public class PlayerController : MonoBehaviour {
 		Color col = gameObject.renderer.material.color;
 		col.a -= DamageAlpha;
 		gameObject.renderer.material.color = col;
-		float time = 0f;
-		while(time < invincibleTime){
-			time += Time.deltaTime;
-			yield return null;
-		}
+		yield return new WaitForSeconds(invincibleTime);
 		invincible = false;
 		col = gameObject.renderer.material.color;
 		col.a += DamageAlpha;

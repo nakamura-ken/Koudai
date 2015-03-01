@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BulletMove: MonoBehaviour {
 
-	public float lifeDistance = 10f;
-
 	public float speed = 0.5f;
 
 	PlayerController p_script;
@@ -15,9 +13,6 @@ public class BulletMove: MonoBehaviour {
 
 	void Update () {
 		gameObject.transform.localPosition += new Vector3(speed, 0f, 0f);
-
-		//if(lifeDistance <= gameObject.transform.localPosition.x)
-			//Destroy(gameObject);
 	}
 
 	void OnBecameInvisible(){
