@@ -53,7 +53,9 @@
      <Compile Include="Assets\Script\Player\BulletMove.cs" />
      <Compile Include="Assets\Script\Player\PlayerController.cs" />
      <Compile Include="Assets\Script\Stage\CameraMove.cs" />
+     <Compile Include="Assets\Script\Stage\FlowBlock.cs" />
      <Compile Include="Assets\Script\Stage\MoveBlock.cs" />
+     <Compile Include="Assets\Script\Stage\_FlowBlock.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>G:/My Documents/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

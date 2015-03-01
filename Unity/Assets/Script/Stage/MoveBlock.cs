@@ -114,17 +114,16 @@ public class MoveBlock : MonoBehaviour {
 		   || (e_rMove == -1f && Vector3.Distance(pos, firstPos) <= 0.1f))
 		{
 			time += Time.deltaTime;
-			if(time < flexibleWait){
+			if(time < flexibleWait)
 				return;
-			}else{
+			else
 				time = 0f;
-			}
 
 			e_rMove *= -1f;
 		}
 
 		//ブロックの表示・非表示
-		if(Vector3.Distance(pos, nextPos[blockIndex]) <= 0.15f){
+		if(Vector3.Distance(pos, nextPos[blockIndex]) <= 0.1f){
 			if(e_rMove == 1f){
 				blockList[blockIndex].SetActive(true);
 				blockIndex = (blockIndex < nextPos.Length - 1) ? blockIndex + 1 : blockIndex;
@@ -137,7 +136,8 @@ public class MoveBlock : MonoBehaviour {
 		//メインブロック移動
 		gameObject.transform.position += movePos * e_rMove;
 	}
-	
+
+	//流体運動
 	void FlowMove(){
 
 	}
